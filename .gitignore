@@ -1,0 +1,11 @@
+__pycache__
+/.idea
+/.venv
+# misc
+.DS_Store
+.env
+/instance
+/htmlcov
+/migrations
+wsgi.ini
+/deploy_tools
