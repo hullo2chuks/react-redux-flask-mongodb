@@ -1,9 +1,7 @@
 from flask import request, jsonify, g
 from ..utils.auth import generate_token, requires_auth, verify_token
-from ..models import User
-from application import db
 from ..api import api as api_bp
-
+from ..models import User
 
 @api_bp.route("/user", methods=["GET"])
 @requires_auth
@@ -14,18 +12,16 @@ def get_user():
 @api_bp.route("/create_user", methods=["POST"])
 def create_user():
     incoming = request.get_json()
-    user = db.User()
-    user.email = incoming["email"]
-    user.password = User.hashed_password(incoming["password"])
+    user = User({'email':incoming["email"], 'password': User.hashed_password(incoming["password"])})
 
     try:
-        user.save();
+        user.save()
     except Exception:
         return jsonify(message="User with that email already exists"), 409
 
-    new_user = db.User.find_one({'email':incoming["email"]})
+    new_user = User.find_one({'email':incoming["email"]})
     return jsonify(
-        id=new_user.cuid,
+        id=str(new_user['_id']),
         token=generate_token(new_user)
     )
 
@@ -33,7 +29,7 @@ def create_user():
 @api_bp.route("/get_token", methods=["POST"])
 def get_token():
     incoming = request.get_json()
-    user = User.get_user_with_email_and_password(incoming["email"], incoming["password"],db)
+    user = User.get_user_with_email_and_password(incoming["email"], incoming["password"])
 
     if user:
         return jsonify(token=generate_token(user))

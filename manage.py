@@ -1,9 +1,13 @@
+import os
 from flask_script import Manager
 
-from application.app import app
+from application import create_app
+
+config_name = os.getenv('FLASK_ENV')
+app = create_app(config_name)
 
 manager = Manager(app)
 
 
 if __name__ == '__main__':
-    manager.run()RDSAWWDDWW                                K.0.
+    manager.run()
