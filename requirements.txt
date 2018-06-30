@@ -8,7 +8,7 @@ mongokat==0.2.0
 pymongo==3.0.3
 py-bcrypt==0.4
 pytest==3.6.1
-pytest==cov-2.5.1
+pytest-cov==2.5.1
 pytest-flask==0.10.0
 requests==2.18.4
 python==editor-1.0.3
