@@ -49,6 +49,7 @@ export function DetermineAuth(Component) {
                                 });
 
                             }
+                        }).catch(error => {
                         });
                 }
 

@@ -49,11 +49,13 @@ export function requireAuthentication(Component) {
                                 this.setState({
                                     loaded_if_needed: true,
                                 });
-
                             } else {
                                 return props.redirectToRoute('/home');
-
                             }
+                        }).catch(error => {
+                           //if (error.response && error.response.status === 403){
+                                return props.redirectToRoute('/home');
+                           //}
                         });
                 }
             } else {

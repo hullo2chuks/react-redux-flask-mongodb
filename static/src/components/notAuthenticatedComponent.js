@@ -58,6 +58,10 @@ export function requireNoAuthentication(Component) {
                                     loaded: true,
                                 });
                             }
+                        }).catch(error => {
+                            this.setState({
+                                loaded: true,
+                            });
                         });
                 } else {
                     this.setState({

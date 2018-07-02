@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
 
 /* application components */
@@ -23,7 +21,7 @@ import { requireNoAuthentication } from '../../components/notAuthenticatedCompon
 
 /* global styles for app */
 import './styles/app.scss';
-
+const theme = createMuiTheme();
 class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
     static propTypes = {
         children: PropTypes.node,
@@ -31,7 +29,7 @@ class App extends React.Component { // eslint-disable-line react/prefer-stateles
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <MuiThemeProvider theme={theme}>
                 <section>
                     <Header />
                     <div
